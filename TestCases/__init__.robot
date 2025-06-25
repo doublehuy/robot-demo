@@ -5,5 +5,5 @@ Resource        ../Pages/LoginPage.robot
 
 *** Keywords ***
 Setup Suite
-    Set Selenium Speed    0.5s
+    Open Browser And Go To Login Page
     Login To System
