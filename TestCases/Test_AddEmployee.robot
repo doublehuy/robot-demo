@@ -1,6 +1,7 @@
 *** Settings ***
 Library           SeleniumLibrary
 Resource          ../Pages/LoginPage.robot
+Resource          ../Pages/PIMPage.robot
 Resource          ../Pages/EmployeePage.robot
 Resource          ../Resources/Variables.robot
 Suite Setup       Open Browser To Login Page And Login

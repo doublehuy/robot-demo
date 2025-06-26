@@ -24,10 +24,12 @@ Add New Employee
     Click Button   ${SAVE_BUTTON}
     Wait Until Page Contains    Personal Details
 
-Search Employee
-    Input Text     ${SEARCH_INPUT}    John
+Search Employee By Name
+    [Arguments]    ${name}
+    Input Text     ${SEARCH_INPUT}    ${name}
     Click Button   ${SEARCH_BUTTON}
     Sleep          2s
+
 
 Delete Employee
     Click Element  ${DELETE_BUTTON}
