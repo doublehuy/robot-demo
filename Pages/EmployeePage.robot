@@ -12,28 +12,33 @@ ${SEARCH_BUTTON}          xpath=//button[@type='submit']
 ${DELETE_BUTTON}          xpath=(//i[contains(@class,'trash')])[1]
 
 *** Keywords ***
-Go To Employee Page
-    Click Element  ${EMPLOYEE_MENU}
-    Wait Until Page Contains Element  ${ADD_EMPLOYEE_BUTTON}
-
-
-
 Click Add Employee
-    Click Element    ${ADD_EMPLOYEE_BUTTON}
+    Click Element    xpath=//a[text()='Add Employee']
 
-Click Edit Employee
-    Click Element    xpath=(//i[contains(@class,'edit')])[1]
-    Wait Until Page Contains    Personal Details    timeout=10s
+Input Employee Name
+    [Arguments]    ${first_name}    ${last_name}
+    Input Text     xpath=//input[@name='firstName']    ${first_name}
+    Input Text     xpath=//input[@name='lastName']     ${last_name}
 
-Select Employee In List
-    # Chọn dòng nhân viên đầu tiên (tùy thuộc vào giao diện thực tế)
-    Click Element    xpath=(//div[@role='row'])[2]  # hàng đầu tiên sau header
+Change First Name
+    [Arguments]    ${new_name}
+    Clear Element Text    xpath=//input[@name='firstName']
+    Input Text            xpath=//input[@name='firstName']    ${new_name}
 
+Save Employee
+    Click Button    xpath=//button[@type='submit']
 
 Search Employee By Name
     [Arguments]    ${name}
-    Input Text     ${SEARCH_INPUT}    ${name}
-    Click Button   ${SEARCH_BUTTON}
+    Input Text     xpath=(//input[@placeholder='Type for hints...'])[1]    ${name}
+    Click Button   xpath=//button[@type='submit']
     Wait Until Page Contains    ${name}    timeout=5s
 
+Select Employee In List
+    Click Element    xpath=(//div[@role='row'])[2]
 
+Delete Selected Employee
+    Click Element    xpath=(//i[contains(@class,'trash')])[1]
+
+Confirm Delete
+    Click Button    xpath=//button[text()='Yes, Delete']
