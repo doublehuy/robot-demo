@@ -15,7 +15,7 @@ Login With Valid Credentials
     Page Should Contain Element    xpath=//h6[text()='Dashboard']
 
 Login With Invalid Password
-    Login With Credentials    Admin    wrongpass
+    Login With Credentials    Admin    admin123
     Page Should Contain    Invalid credentials
 
 # -------------------- ADD ---------------------
