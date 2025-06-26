@@ -16,22 +16,24 @@ Go To Employee Page
     Click Element  ${EMPLOYEE_MENU}
     Wait Until Page Contains Element  ${ADD_EMPLOYEE_BUTTON}
 
-Add New Employee
-    Click Element  ${ADD_EMPLOYEE_BUTTON}
-    Wait Until Element Is Visible    ${FIRST_NAME_INPUT}    10s
-    Input Text     ${FIRST_NAME_INPUT}     John
-    Input Text     ${LAST_NAME_INPUT}      Doe
-    Click Button   ${SAVE_BUTTON}
-    Wait Until Page Contains    Personal Details
+
+
+Click Add Employee
+    Click Element    ${ADD_EMPLOYEE_BUTTON}
+
+Click Edit Employee
+    Click Element    xpath=(//i[contains(@class,'edit')])[1]
+    Wait Until Page Contains    Personal Details    timeout=10s
+
+Select Employee In List
+    # Chọn dòng nhân viên đầu tiên (tùy thuộc vào giao diện thực tế)
+    Click Element    xpath=(//div[@role='row'])[2]  # hàng đầu tiên sau header
+
 
 Search Employee By Name
     [Arguments]    ${name}
     Input Text     ${SEARCH_INPUT}    ${name}
     Click Button   ${SEARCH_BUTTON}
-    Sleep          2s
+    Wait Until Page Contains    ${name}    timeout=5s
 
 
-Delete Employee
-    Click Element  ${DELETE_BUTTON}
-    Click Button   xpath=//button[text()='Yes, Delete']
-    Sleep          2s
